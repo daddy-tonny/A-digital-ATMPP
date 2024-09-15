@@ -4,113 +4,152 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main implements ActionListener {
-    // Declare buttons and fields as class variables to be used in actionPerformed
     private JButton confirmButton;
     private JButton cancelButton;
     private JTextField enterAmountTextField;
     private JPasswordField passwordTextField;
-    private JCheckBox showPasswordCheckBox;  // Checkbox to show/hide password
+    private JCheckBox showPasswordCheckBox;
 
     public static void main(String[] args) {
-        new Main();  // Create an instance of Main to set up GUI
+        new Main();
     }
 
     public Main() {
         JFrame frame = new JFrame();
         frame.setTitle("CONFIRM TRANSACTION");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null); // Using null layout for manual placement
-        frame.setSize(650, 500);
-        frame.setBackground(Color.BLUE);
+        frame.setSize(650, 400);
+        frame.setLocationRelativeTo(null);  // Center the window
+
+        // Use GridBagLayout for responsive design
+        frame.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 10, 10, 10);  // Padding around components
 
         JLabel label1 = new JLabel("Enter Amount:");
-        label1.setBounds(20, 40, 240, 15);
         label1.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        frame.add(label1, gbc);
 
-        enterAmountTextField = new JTextField();
-        enterAmountTextField.setBounds(180, 40, 290, 25);
+        enterAmountTextField = new JTextField(20);
         enterAmountTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        gbc.gridx = 1;
+        frame.add(enterAmountTextField, gbc);
 
         JLabel label2 = new JLabel("Password:");
-        label2.setBounds(20, 80, 240, 15);
         label2.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        frame.add(label2, gbc);
 
-        passwordTextField = new JPasswordField();  // Use JPasswordField for security
-        passwordTextField.setBounds(180, 80, 290, 25);
+        passwordTextField = new JPasswordField(20);
         passwordTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        gbc.gridx = 1;
+        frame.add(passwordTextField, gbc);
 
-        // Checkbox to show/hide password
+        // Checkbox for showing/hiding password
         showPasswordCheckBox = new JCheckBox("Show Password");
-        showPasswordCheckBox.setBounds(480, 80, 150, 25);
-        showPasswordCheckBox.setForeground(Color.BLACK); // Checkbox text color to white
-        showPasswordCheckBox.addActionListener(this);  // Add action listener to the checkbox
+        showPasswordCheckBox.addActionListener(this);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        frame.add(showPasswordCheckBox, gbc);
 
         confirmButton = new JButton("CONFIRM");
-        confirmButton.setBounds(165, 150, 120, 35);
-        confirmButton.setFocusable(false);
-        confirmButton.addActionListener(this);  // Add action listener to the button
+        confirmButton.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        frame.add(confirmButton, gbc);
 
         cancelButton = new JButton("CANCEL");
-        cancelButton.setBounds(320, 150, 120, 35);
-        cancelButton.setFocusable(false);
-        cancelButton.addActionListener(this);  // Add action listener to the button
+        cancelButton.addActionListener(this);
+        gbc.gridx = 1;
+        frame.add(cancelButton, gbc);
 
-        frame.add(label1);
-        frame.add(label2);
-        frame.add(enterAmountTextField);
-        frame.add(passwordTextField);
-        frame.add(showPasswordCheckBox);  // Add checkbox to the frame
-        frame.add(confirmButton);
-        frame.add(cancelButton);
         frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
-            // Check if both fields are filled
-            String accountNumber = enterAmountTextField.getText().trim();
+            String amountText = enterAmountTextField.getText().trim();
             String password = new String(passwordTextField.getPassword()).trim();
 
-            boolean allFieldsFilled = true;  // Flag to check if all fields are filled
+            boolean allFieldsFilled = true;
 
-            // Reset field colors
             enterAmountTextField.setBackground(Color.WHITE);
             passwordTextField.setBackground(Color.WHITE);
 
-            // Check if account number field is empty
-            if (accountNumber.isEmpty()) {
-               enterAmountTextField.setBackground(Color.RED);  // Highlight in red
+            // Check if the amount is a valid number
+            if (amountText.isEmpty() || !isNumeric(amountText)) {
+                enterAmountTextField.setBackground(Color.RED);
+                JOptionPane.showMessageDialog(null, "Please enter a valid amount.", "Input Error", JOptionPane.ERROR_MESSAGE);
                 allFieldsFilled = false;
             }
 
-            // Check if password field is empty
             if (password.isEmpty()) {
-                passwordTextField.setBackground(Color.RED);  // Highlight in red
+                passwordTextField.setBackground(Color.RED);
                 allFieldsFilled = false;
             }
 
             if (allFieldsFilled) {
-                // All fields are filled, show success message
-                JOptionPane.showMessageDialog(null, "Transaction successful!\nAccount Number: " + accountNumber);
-            } else {
-                // Show error message if any field is empty
-                JOptionPane.showMessageDialog(null, "Please fill all text fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                showLoadingAnimation();
             }
         } else if (e.getSource() == cancelButton) {
-            // Action for cancel button
-            enterAmountTextField.setText("");  // Clear account number text field
-            passwordTextField.setText("");  // Clear password field
-            enterAmountTextField.setBackground(Color.WHITE);  // Reset field color
-            passwordTextField.setBackground(Color.WHITE);  // Reset field color
+            enterAmountTextField.setText("");
+            passwordTextField.setText("");
+            enterAmountTextField.setBackground(Color.WHITE);
+            passwordTextField.setBackground(Color.WHITE);
         } else if (e.getSource() == showPasswordCheckBox) {
-            // Toggle password visibility based on checkbox state
             if (showPasswordCheckBox.isSelected()) {
-                passwordTextField.setEchoChar((char) 0);  // Show password
+                passwordTextField.setEchoChar((char) 0);
             } else {
-                passwordTextField.setEchoChar('•');  // Hide password with bullet character
+                passwordTextField.setEchoChar('•');
             }
         }
     }
-}
 
+    // Check if a string is numeric
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Show loading animation before displaying the result
+    private void showLoadingAnimation() {
+        JDialog loadingDialog = new JDialog((JFrame) null, "Loading", true);
+        JLabel loadingLabel = new JLabel("Processing...", JLabel.CENTER);
+        loadingDialog.add(loadingLabel);
+        loadingDialog.setSize(200, 100);
+        loadingDialog.setLocationRelativeTo(null);
+
+        // Use SwingWorker to display loading animation without freezing the UI
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                Thread.sleep(2000);  // Simulate 2 seconds delay
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                loadingDialog.dispose();
+                showTransactionResult();
+            }
+        };
+
+        worker.execute();
+        loadingDialog.setVisible(true);
+    }
+
+    // Show transaction result dialog
+    private void showTransactionResult() {
+        String amountText = enterAmountTextField.getText().trim();
+        JOptionPane.showMessageDialog(null, "Transaction successful! Amount is : " + amountText, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
