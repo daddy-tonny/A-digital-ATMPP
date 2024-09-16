@@ -1,0 +1,181 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DIGITALATM extends JFrame {
+    private JPanel mainPanel;
+    private JButton depositButton, withdrawButton, cancelButton;
+    private JButton momoToAtmButton, atmToBankButton;
+    private JButton bankToAtmButton, atmToMomoButton;
+    private JComboBox<String> bankSelectionBox;
+    private JLabel messageLabel;
+
+    public DIGITALATM() {
+        // Set up the frame
+        setTitle("DIGITALATM");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Initialize components
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        messageLabel = new JLabel("Please choose an option:");
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        depositButton = new JButton("Deposit");
+        withdrawButton = new JButton("Withdraw");
+        cancelButton = new JButton("Cancel");
+
+        momoToAtmButton = new JButton("Momo to ATM");
+        atmToBankButton = new JButton("ATM to Bank");
+
+        bankToAtmButton = new JButton("Bank to ATM");
+        atmToMomoButton = new JButton("ATM to Momo");
+
+        String[] banks = {"Bank A", "Bank B", "Bank C"};
+        bankSelectionBox = new JComboBox<>(banks);
+
+        // Add components to main panel
+        mainPanel.add(messageLabel, gbc);
+        mainPanel.add(depositButton, gbc);
+        mainPanel.add(withdrawButton, gbc);
+
+        // Add action listeners
+        depositButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showDepositOptions();
+            }
+        });
+
+        withdrawButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showWithdrawOptions();
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetToMainMenu();
+            }
+        });
+
+        // Set up the frame layout
+        add(mainPanel);
+        setVisible(true);
+    }
+
+    private void showDepositOptions() {
+        mainPanel.removeAll();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        mainPanel.add(new JLabel("Deposit Options:"), gbc);
+        mainPanel.add(momoToAtmButton, gbc);
+        mainPanel.add(atmToBankButton, gbc);
+        mainPanel.add(cancelButton, gbc);
+
+        momoToAtmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetToMainMenu();
+            }
+        });
+
+        atmToBankButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showBankSelection();
+            }
+        });
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    private void showWithdrawOptions() {
+        mainPanel.removeAll();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        mainPanel.add(new JLabel("Withdraw Options:"), gbc);
+        mainPanel.add(bankToAtmButton, gbc);
+        mainPanel.add(atmToMomoButton, gbc);
+        mainPanel.add(cancelButton, gbc);
+
+        bankToAtmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showBankSelection();
+            }
+        });
+
+        atmToMomoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetToMainMenu();
+            }
+        });
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    private void showBankSelection() {
+        mainPanel.removeAll();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        mainPanel.add(new JLabel("Select Bank:"), gbc);
+        mainPanel.add(bankSelectionBox, gbc);
+        mainPanel.add(cancelButton, gbc);
+
+        bankSelectionBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetToMainMenu();
+            }
+        });
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    private void resetToMainMenu() {
+        mainPanel.removeAll();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        mainPanel.add(messageLabel, gbc);
+        mainPanel.add(depositButton, gbc);
+        mainPanel.add(withdrawButton, gbc);
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
+    public static void main(String[] args) {
+        new DIGITALATM();
+    }
+}
