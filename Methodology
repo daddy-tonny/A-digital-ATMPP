@@ -1,0 +1,147 @@
+Literature Review
+1. Review of Concepts Related to Digital ATM
+Database Management Systems (DBMS)
+A Database Management System (DBMS) is a software
+application that enables the creation, organization, and
+management of databases. It provides a systematic way to store,
+retrieve, and manage data. In the context of the Digital ATM
+application, a DBMS is crucial for handling user data, transaction
+histories, account details, and other critical information.
+Relational databases, such as MySQL and PostgreSQL, are often
+used for such applications due to their reliability, scalability, and
+ability to manage complex queries. The choice of a robust DBMS
+ensures data integrity, consistency, and security, which are vital
+for financial transactions.
+Application Programming Interface (API)
+An API (Application Programming Interface) is a set of protocols
+and tools that allow different software applications to
+communicate with each other. For Digital ATM, APIs play a crucial
+role in integrating various services such as mobile money
+platforms, bank systems, and third-party services. APIs enable
+secure and efficient data exchange between the app and external
+systems, ensuring seamless functionality. For instance, using a
+RESTful API can facilitate communication between the Digital
+ATM app and banking systems, allowing for real-time transaction
+processing and account updates.
+Mobile Payment Systems
+Mobile payment systems, such as Mobile Money, are platforms
+that allow users to conduct financial transactions through their
+mobile devices. These systems are integral to the Digital ATM
+application, as they enable users to transfer money from their
+mobile money accounts to their bank accounts without visiting a
+physical bank. The integration of mobile payment systems with
+Digital ATM requires careful consideration of transaction security,
+user authentication, and compliance with financial regulations.
+2. Software Development Methodologies
+Review of Various Software Development Methodologies
+1. Waterfall Model:
+- The Waterfall model is a linear and sequential
+approach to software development. It involves distinct
+phases, such as requirements gathering, design,
+implementation, testing, deployment, and
+maintenance, with each phase being completed before
+the next begins. This model is simple to understand
+and manage, but it lacks flexibility, making it difficult to
+accommodate changes once the project has begun.
+2. Agile Methodology:
+- Agile is an iterative and incremental approach to
+software development. It emphasizes collaboration,
+flexibility, and customer feedback. Development is
+broken down into small, manageable units called
+sprints, which typically last 1-4 weeks. At the end of
+each sprint, a potentially shippable product increment
+is delivered. Agile allows for continuous improvement
+and adaptation based on user feedback, making it
+ideal for dynamic projects where requirements may
+evolve.
+3. Scrum:
+- Scrum is a framework within Agile that focuses on
+delivering functional software in iterative cycles known
+as sprints. It involves roles such as Product Owner,
+Scrum Master, and Development Team, and
+emphasizes daily stand-ups, sprint planning, sprint
+reviews, and retrospectives. Scrum is highly
+collaborative and promotes transparency and
+accountability within the team.
+4. Spiral Model:
+- The Spiral model combines elements of both iterative
+and waterfall models. It involves repeated iterations
+through four phases: planning, risk analysis,
+engineering, and evaluation. The Spiral model is
+particularly useful for large and complex projects
+where risk management is crucial.
+5. DevOps:
+- DevOps is a cultural and operational approach that
+aims to unify software development (Dev) and IT
+operations (Ops). It emphasizes automation,
+continuous integration/continuous delivery (CI/CD),
+and close collaboration between development and
+operations teams. DevOps aims to shorten the
+development lifecycle while delivering high-quality
+software continuously.
+Chosen Methodology: Agile Methodology
+Reasons for Choosing Agile:
+- Flexibility and Adaptability: Agile allows for frequent
+adjustments based on user feedback, which is
+essential for the development of the Digital ATM
+application. The financial technology sector is rapidly
+evolving, and Agile's flexibility enables the
+development team to adapt to changing requirements
+and market conditions.
+- Customer-Centric Approach: Agile emphasizes
+collaboration with stakeholders and end-users. This
+approach ensures that the Digital ATM app is
+developed with a focus on user experience and
+satisfaction, leading to a product that better meets
+customer needs.
+- Incremental Development: The ability to develop the
+application in small, manageable increments allows
+for the early detection and resolution of issues,
+ensuring a higher-quality end product. This is
+particularly important in financial applications, where
+security and reliability are paramount.
+Continuous Improvement: Agile promotes continuous
+improvement through regular retrospectives and iterations. This
+ensures that the development process is constantly refined,
+leading to better outcomes over time.
+3. Review of Related Literature
+In recent years, the financial technology (FinTech) industry has
+witnessed significant growth, driven by the increasing demand for
+digital financial services. Several studies have highlighted the
+impact of mobile banking and payment systems on financial
+inclusion, particularly in developing regions where access to
+traditional banking services is limited.
+For example, a study by Jack and Suri (2011) on mobile money in
+Kenya demonstrated how mobile payment systems have
+revolutionized financial transactions, allowing users to send and
+receive money, pay bills, and access banking services using their
+mobile phones. This has had a profound impact on financial
+inclusion, enabling millions of people to participate in the formal
+financial system for the first time.
+Similarly, Donovan (2012) explored the role of mobile technology
+in financial inclusion, noting that the convenience and
+accessibility of mobile banking applications have significantly
+reduced the barriers to accessing financial services. The study
+emphasized the importance of user-cantered design and security
+in the development of mobile banking apps.
+The development of the Digital ATM application aligns with these
+trends, aiming to provide a secure, convenient, and accessible
+platform for depositing money into bank accounts without the
+need for physical bank visits. By leveraging mobile payment
+systems and integrating them with traditional banking, Digital ATM
+has the potential to enhance financial inclusion and streamline
+banking processes for users in both urban and rural areas.
+The choice of Agile methodology in developing Digital ATM is
+supported by literature that underscores the benefits of iterative,
+user-focused development approaches in FinTech. Beck et al.
+(2001), in their formulation of the Agile Manifesto, emphasized the
+importance of customer collaboration, responsiveness to
+change, and delivering working software frequently—principles
+that are particularly relevant to the fast-paced, dynamic nature of
+the financial technology industry.
+In conclusion, the literature supports the need for digital financial
+solutions like Digital ATM, particularly in regions where access to
+traditional banking is limited. The application of Agile
+methodology in the development of this project ensures that the
+product will be flexible, user-centric, and capable of adapting to
+the evolving needs of its users.
